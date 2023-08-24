@@ -1,0 +1,7 @@
+apiVersion: eki.ecloud.cmss.com/v1
+kind: License
+metadata:
+  name: eki-license
+spec:
+  key: XR7vP1oo0LNbwIMYzSXXurOXOsvrzNcA29c26SwCVblBnY4r/e0jW9+moWcosqQTqs8KR2D5LSOjsWveQiXlL3kkMHHM5yKGxUoe9PoZj4paDBWPxaO/gaYu34tN3OCew2DvVq4Urr2us5Iu5yhIflD4dYbqeQ/K9cUp4tW32VqxFeqI1Ppc7B1I6x6nbgrHwaGBmYB4otkTRbmLIejmRACQhYAah3zDikz1RENbYcC+Bqiedcn5P+MqHrLc/91Ah8fEVs/0ZQXOOmSHXANItL/mNQ/7fkK76ElwpNw65lohnsfIV20YexbTqMagfsbrrdHAO59BqiEi11jDyWkNtw==
+
