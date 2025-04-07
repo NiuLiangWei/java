@@ -73,7 +73,7 @@ public class ExpandedExample {
                   System.out.println("----- " + namespace + " -----");
                   getNamespacedPod(namespace).stream().forEach(System.out::println);
                 } catch (ApiException ex) {
-                  LOGGER.warn("Couldn't get the pods in namespace:" + namespace, ex);
+                  LOGGER.warn("Couldn't get the pods in namespace:{}", namespace, ex);
                 }
               });
 
@@ -102,7 +102,7 @@ public class ExpandedExample {
   public static List<String> getAllNameSpaces() throws ApiException {
     V1NamespaceList listNamespace =
         COREV1_API.listNamespace(
-            null, null, null, null, null, null, null, null, null, null, null);
+            null, null, null, null, null, null, null, null, null, null);
     List<String> list =
         listNamespace.getItems().stream()
             .map(v1Namespace -> v1Namespace.getMetadata().getName())
@@ -119,7 +119,7 @@ public class ExpandedExample {
   public static List<String> getPods() throws ApiException {
     V1PodList v1podList =
         COREV1_API.listPodForAllNamespaces(
-            null, null, null, null, null, null, null, null, null, null, null);
+            null, null, null, null, null, null, null, null, null, null);
     List<String> podList =
         v1podList.getItems().stream()
             .map(v1Pod -> v1Pod.getMetadata().getName())
@@ -168,7 +168,6 @@ public class ExpandedExample {
             null,
             null,
             null,
-            null,
             TIME_OUT_VALUE,
             Boolean.FALSE);
     List<String> listPods =
@@ -188,7 +187,6 @@ public class ExpandedExample {
     V1ServiceList listNamespacedService =
         COREV1_API.listNamespacedService(
             DEFAULT_NAME_SPACE,
-            null,
             null,
             null,
             null,
@@ -227,7 +225,6 @@ public class ExpandedExample {
             null,
             null,
             null,
-            null,
             Boolean.FALSE);
 
     List<V1Deployment> appsV1DeploymentItems = listNamespacedDeployment.getItems();
@@ -245,7 +242,7 @@ public class ExpandedExample {
             appsV1Api.replaceNamespacedDeployment(
                 deploymentName, DEFAULT_NAME_SPACE, newDeploy, null, null, null, null);
           } catch (ApiException ex) {
-            LOGGER.warn("Scale the pod failed for Deployment:" + deploymentName, ex);
+            LOGGER.warn("Scale the pod failed for Deployment:{}", deploymentName, ex);
           }
         });
   }

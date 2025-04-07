@@ -1,5 +1,5 @@
 /*
-Copyright 2023 The Kubernetes Authors.
+Copyright 2025 The Kubernetes Authors.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -13,7 +13,6 @@ limitations under the License.
 package io.kubernetes.client.openapi.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -48,19 +47,44 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import io.kubernetes.client.openapi.JSON;
 
 /**
  * PersistentVolumeSpec is the specification of a persistent volume.
  */
 @ApiModel(description = "PersistentVolumeSpec is the specification of a persistent volume.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-18T15:05:57.863601Z[Etc/UTC]")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-12T21:15:49.397498Z[Etc/UTC]", comments = "Generator version: 7.6.0")
 public class V1PersistentVolumeSpec {
   public static final String SERIALIZED_NAME_ACCESS_MODES = "accessModes";
   @SerializedName(SERIALIZED_NAME_ACCESS_MODES)
-  private List<String> accessModes = null;
+  private List<String> accessModes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_AWS_ELASTIC_BLOCK_STORE = "awsElasticBlockStore";
   @SerializedName(SERIALIZED_NAME_AWS_ELASTIC_BLOCK_STORE)
@@ -76,7 +100,7 @@ public class V1PersistentVolumeSpec {
 
   public static final String SERIALIZED_NAME_CAPACITY = "capacity";
   @SerializedName(SERIALIZED_NAME_CAPACITY)
-  private Map<String, Quantity> capacity = null;
+  private Map<String, Quantity> capacity = new HashMap<>();
 
   public static final String SERIALIZED_NAME_CEPHFS = "cephfs";
   @SerializedName(SERIALIZED_NAME_CEPHFS)
@@ -128,7 +152,7 @@ public class V1PersistentVolumeSpec {
 
   public static final String SERIALIZED_NAME_MOUNT_OPTIONS = "mountOptions";
   @SerializedName(SERIALIZED_NAME_MOUNT_OPTIONS)
-  private List<String> mountOptions = null;
+  private List<String> mountOptions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NFS = "nfs";
   @SerializedName(SERIALIZED_NAME_NFS)
@@ -170,6 +194,10 @@ public class V1PersistentVolumeSpec {
   @SerializedName(SERIALIZED_NAME_STORAGEOS)
   private V1StorageOSPersistentVolumeSource storageos;
 
+  public static final String SERIALIZED_NAME_VOLUME_ATTRIBUTES_CLASS_NAME = "volumeAttributesClassName";
+  @SerializedName(SERIALIZED_NAME_VOLUME_ATTRIBUTES_CLASS_NAME)
+  private String volumeAttributesClassName;
+
   public static final String SERIALIZED_NAME_VOLUME_MODE = "volumeMode";
   @SerializedName(SERIALIZED_NAME_VOLUME_MODE)
   private String volumeMode;
@@ -178,9 +206,10 @@ public class V1PersistentVolumeSpec {
   @SerializedName(SERIALIZED_NAME_VSPHERE_VOLUME)
   private V1VsphereVirtualDiskVolumeSource vsphereVolume;
 
+  public V1PersistentVolumeSpec() {
+  }
 
   public V1PersistentVolumeSpec accessModes(List<String> accessModes) {
-
     this.accessModes = accessModes;
     return this;
   }
@@ -197,13 +226,11 @@ public class V1PersistentVolumeSpec {
    * accessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
    * @return accessModes
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "accessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes")
-
   public List<String> getAccessModes() {
     return accessModes;
   }
-
 
   public void setAccessModes(List<String> accessModes) {
     this.accessModes = accessModes;
@@ -211,7 +238,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec awsElasticBlockStore(V1AWSElasticBlockStoreVolumeSource awsElasticBlockStore) {
-
     this.awsElasticBlockStore = awsElasticBlockStore;
     return this;
   }
@@ -220,13 +246,11 @@ public class V1PersistentVolumeSpec {
    * Get awsElasticBlockStore
    * @return awsElasticBlockStore
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1AWSElasticBlockStoreVolumeSource getAwsElasticBlockStore() {
     return awsElasticBlockStore;
   }
-
 
   public void setAwsElasticBlockStore(V1AWSElasticBlockStoreVolumeSource awsElasticBlockStore) {
     this.awsElasticBlockStore = awsElasticBlockStore;
@@ -234,7 +258,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec azureDisk(V1AzureDiskVolumeSource azureDisk) {
-
     this.azureDisk = azureDisk;
     return this;
   }
@@ -243,13 +266,11 @@ public class V1PersistentVolumeSpec {
    * Get azureDisk
    * @return azureDisk
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1AzureDiskVolumeSource getAzureDisk() {
     return azureDisk;
   }
-
 
   public void setAzureDisk(V1AzureDiskVolumeSource azureDisk) {
     this.azureDisk = azureDisk;
@@ -257,7 +278,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec azureFile(V1AzureFilePersistentVolumeSource azureFile) {
-
     this.azureFile = azureFile;
     return this;
   }
@@ -266,13 +286,11 @@ public class V1PersistentVolumeSpec {
    * Get azureFile
    * @return azureFile
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1AzureFilePersistentVolumeSource getAzureFile() {
     return azureFile;
   }
-
 
   public void setAzureFile(V1AzureFilePersistentVolumeSource azureFile) {
     this.azureFile = azureFile;
@@ -280,7 +298,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec capacity(Map<String, Quantity> capacity) {
-
     this.capacity = capacity;
     return this;
   }
@@ -297,13 +314,11 @@ public class V1PersistentVolumeSpec {
    * capacity is the description of the persistent volume&#39;s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
    * @return capacity
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "capacity is the description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity")
-
   public Map<String, Quantity> getCapacity() {
     return capacity;
   }
-
 
   public void setCapacity(Map<String, Quantity> capacity) {
     this.capacity = capacity;
@@ -311,7 +326,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec cephfs(V1CephFSPersistentVolumeSource cephfs) {
-
     this.cephfs = cephfs;
     return this;
   }
@@ -320,13 +334,11 @@ public class V1PersistentVolumeSpec {
    * Get cephfs
    * @return cephfs
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1CephFSPersistentVolumeSource getCephfs() {
     return cephfs;
   }
-
 
   public void setCephfs(V1CephFSPersistentVolumeSource cephfs) {
     this.cephfs = cephfs;
@@ -334,7 +346,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec cinder(V1CinderPersistentVolumeSource cinder) {
-
     this.cinder = cinder;
     return this;
   }
@@ -343,13 +354,11 @@ public class V1PersistentVolumeSpec {
    * Get cinder
    * @return cinder
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1CinderPersistentVolumeSource getCinder() {
     return cinder;
   }
-
 
   public void setCinder(V1CinderPersistentVolumeSource cinder) {
     this.cinder = cinder;
@@ -357,7 +366,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec claimRef(V1ObjectReference claimRef) {
-
     this.claimRef = claimRef;
     return this;
   }
@@ -366,13 +374,11 @@ public class V1PersistentVolumeSpec {
    * Get claimRef
    * @return claimRef
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1ObjectReference getClaimRef() {
     return claimRef;
   }
-
 
   public void setClaimRef(V1ObjectReference claimRef) {
     this.claimRef = claimRef;
@@ -380,7 +386,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec csi(V1CSIPersistentVolumeSource csi) {
-
     this.csi = csi;
     return this;
   }
@@ -389,13 +394,11 @@ public class V1PersistentVolumeSpec {
    * Get csi
    * @return csi
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1CSIPersistentVolumeSource getCsi() {
     return csi;
   }
-
 
   public void setCsi(V1CSIPersistentVolumeSource csi) {
     this.csi = csi;
@@ -403,7 +406,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec fc(V1FCVolumeSource fc) {
-
     this.fc = fc;
     return this;
   }
@@ -412,13 +414,11 @@ public class V1PersistentVolumeSpec {
    * Get fc
    * @return fc
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1FCVolumeSource getFc() {
     return fc;
   }
-
 
   public void setFc(V1FCVolumeSource fc) {
     this.fc = fc;
@@ -426,7 +426,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec flexVolume(V1FlexPersistentVolumeSource flexVolume) {
-
     this.flexVolume = flexVolume;
     return this;
   }
@@ -435,13 +434,11 @@ public class V1PersistentVolumeSpec {
    * Get flexVolume
    * @return flexVolume
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1FlexPersistentVolumeSource getFlexVolume() {
     return flexVolume;
   }
-
 
   public void setFlexVolume(V1FlexPersistentVolumeSource flexVolume) {
     this.flexVolume = flexVolume;
@@ -449,7 +446,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec flocker(V1FlockerVolumeSource flocker) {
-
     this.flocker = flocker;
     return this;
   }
@@ -458,13 +454,11 @@ public class V1PersistentVolumeSpec {
    * Get flocker
    * @return flocker
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1FlockerVolumeSource getFlocker() {
     return flocker;
   }
-
 
   public void setFlocker(V1FlockerVolumeSource flocker) {
     this.flocker = flocker;
@@ -472,7 +466,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec gcePersistentDisk(V1GCEPersistentDiskVolumeSource gcePersistentDisk) {
-
     this.gcePersistentDisk = gcePersistentDisk;
     return this;
   }
@@ -481,13 +474,11 @@ public class V1PersistentVolumeSpec {
    * Get gcePersistentDisk
    * @return gcePersistentDisk
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1GCEPersistentDiskVolumeSource getGcePersistentDisk() {
     return gcePersistentDisk;
   }
-
 
   public void setGcePersistentDisk(V1GCEPersistentDiskVolumeSource gcePersistentDisk) {
     this.gcePersistentDisk = gcePersistentDisk;
@@ -495,7 +486,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec glusterfs(V1GlusterfsPersistentVolumeSource glusterfs) {
-
     this.glusterfs = glusterfs;
     return this;
   }
@@ -504,13 +494,11 @@ public class V1PersistentVolumeSpec {
    * Get glusterfs
    * @return glusterfs
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1GlusterfsPersistentVolumeSource getGlusterfs() {
     return glusterfs;
   }
-
 
   public void setGlusterfs(V1GlusterfsPersistentVolumeSource glusterfs) {
     this.glusterfs = glusterfs;
@@ -518,7 +506,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec hostPath(V1HostPathVolumeSource hostPath) {
-
     this.hostPath = hostPath;
     return this;
   }
@@ -527,13 +514,11 @@ public class V1PersistentVolumeSpec {
    * Get hostPath
    * @return hostPath
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1HostPathVolumeSource getHostPath() {
     return hostPath;
   }
-
 
   public void setHostPath(V1HostPathVolumeSource hostPath) {
     this.hostPath = hostPath;
@@ -541,7 +526,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec iscsi(V1ISCSIPersistentVolumeSource iscsi) {
-
     this.iscsi = iscsi;
     return this;
   }
@@ -550,13 +534,11 @@ public class V1PersistentVolumeSpec {
    * Get iscsi
    * @return iscsi
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1ISCSIPersistentVolumeSource getIscsi() {
     return iscsi;
   }
-
 
   public void setIscsi(V1ISCSIPersistentVolumeSource iscsi) {
     this.iscsi = iscsi;
@@ -564,7 +546,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec local(V1LocalVolumeSource local) {
-
     this.local = local;
     return this;
   }
@@ -573,13 +554,11 @@ public class V1PersistentVolumeSpec {
    * Get local
    * @return local
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1LocalVolumeSource getLocal() {
     return local;
   }
-
 
   public void setLocal(V1LocalVolumeSource local) {
     this.local = local;
@@ -587,7 +566,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec mountOptions(List<String> mountOptions) {
-
     this.mountOptions = mountOptions;
     return this;
   }
@@ -604,13 +582,11 @@ public class V1PersistentVolumeSpec {
    * mountOptions is the list of mount options, e.g. [\&quot;ro\&quot;, \&quot;soft\&quot;]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
    * @return mountOptions
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "mountOptions is the list of mount options, e.g. [\"ro\", \"soft\"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options")
-
   public List<String> getMountOptions() {
     return mountOptions;
   }
-
 
   public void setMountOptions(List<String> mountOptions) {
     this.mountOptions = mountOptions;
@@ -618,7 +594,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec nfs(V1NFSVolumeSource nfs) {
-
     this.nfs = nfs;
     return this;
   }
@@ -627,13 +602,11 @@ public class V1PersistentVolumeSpec {
    * Get nfs
    * @return nfs
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1NFSVolumeSource getNfs() {
     return nfs;
   }
-
 
   public void setNfs(V1NFSVolumeSource nfs) {
     this.nfs = nfs;
@@ -641,7 +614,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec nodeAffinity(V1VolumeNodeAffinity nodeAffinity) {
-
     this.nodeAffinity = nodeAffinity;
     return this;
   }
@@ -650,13 +622,11 @@ public class V1PersistentVolumeSpec {
    * Get nodeAffinity
    * @return nodeAffinity
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1VolumeNodeAffinity getNodeAffinity() {
     return nodeAffinity;
   }
-
 
   public void setNodeAffinity(V1VolumeNodeAffinity nodeAffinity) {
     this.nodeAffinity = nodeAffinity;
@@ -664,7 +634,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec persistentVolumeReclaimPolicy(String persistentVolumeReclaimPolicy) {
-
     this.persistentVolumeReclaimPolicy = persistentVolumeReclaimPolicy;
     return this;
   }
@@ -673,13 +642,11 @@ public class V1PersistentVolumeSpec {
    * persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
    * @return persistentVolumeReclaimPolicy
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming")
-
   public String getPersistentVolumeReclaimPolicy() {
     return persistentVolumeReclaimPolicy;
   }
-
 
   public void setPersistentVolumeReclaimPolicy(String persistentVolumeReclaimPolicy) {
     this.persistentVolumeReclaimPolicy = persistentVolumeReclaimPolicy;
@@ -687,7 +654,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec photonPersistentDisk(V1PhotonPersistentDiskVolumeSource photonPersistentDisk) {
-
     this.photonPersistentDisk = photonPersistentDisk;
     return this;
   }
@@ -696,13 +662,11 @@ public class V1PersistentVolumeSpec {
    * Get photonPersistentDisk
    * @return photonPersistentDisk
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1PhotonPersistentDiskVolumeSource getPhotonPersistentDisk() {
     return photonPersistentDisk;
   }
-
 
   public void setPhotonPersistentDisk(V1PhotonPersistentDiskVolumeSource photonPersistentDisk) {
     this.photonPersistentDisk = photonPersistentDisk;
@@ -710,7 +674,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec portworxVolume(V1PortworxVolumeSource portworxVolume) {
-
     this.portworxVolume = portworxVolume;
     return this;
   }
@@ -719,13 +682,11 @@ public class V1PersistentVolumeSpec {
    * Get portworxVolume
    * @return portworxVolume
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1PortworxVolumeSource getPortworxVolume() {
     return portworxVolume;
   }
-
 
   public void setPortworxVolume(V1PortworxVolumeSource portworxVolume) {
     this.portworxVolume = portworxVolume;
@@ -733,7 +694,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec quobyte(V1QuobyteVolumeSource quobyte) {
-
     this.quobyte = quobyte;
     return this;
   }
@@ -742,13 +702,11 @@ public class V1PersistentVolumeSpec {
    * Get quobyte
    * @return quobyte
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1QuobyteVolumeSource getQuobyte() {
     return quobyte;
   }
-
 
   public void setQuobyte(V1QuobyteVolumeSource quobyte) {
     this.quobyte = quobyte;
@@ -756,7 +714,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec rbd(V1RBDPersistentVolumeSource rbd) {
-
     this.rbd = rbd;
     return this;
   }
@@ -765,13 +722,11 @@ public class V1PersistentVolumeSpec {
    * Get rbd
    * @return rbd
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1RBDPersistentVolumeSource getRbd() {
     return rbd;
   }
-
 
   public void setRbd(V1RBDPersistentVolumeSource rbd) {
     this.rbd = rbd;
@@ -779,7 +734,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec scaleIO(V1ScaleIOPersistentVolumeSource scaleIO) {
-
     this.scaleIO = scaleIO;
     return this;
   }
@@ -788,13 +742,11 @@ public class V1PersistentVolumeSpec {
    * Get scaleIO
    * @return scaleIO
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1ScaleIOPersistentVolumeSource getScaleIO() {
     return scaleIO;
   }
-
 
   public void setScaleIO(V1ScaleIOPersistentVolumeSource scaleIO) {
     this.scaleIO = scaleIO;
@@ -802,7 +754,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec storageClassName(String storageClassName) {
-
     this.storageClassName = storageClassName;
     return this;
   }
@@ -811,13 +762,11 @@ public class V1PersistentVolumeSpec {
    * storageClassName is the name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.
    * @return storageClassName
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "storageClassName is the name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.")
-
   public String getStorageClassName() {
     return storageClassName;
   }
-
 
   public void setStorageClassName(String storageClassName) {
     this.storageClassName = storageClassName;
@@ -825,7 +774,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec storageos(V1StorageOSPersistentVolumeSource storageos) {
-
     this.storageos = storageos;
     return this;
   }
@@ -834,21 +782,38 @@ public class V1PersistentVolumeSpec {
    * Get storageos
    * @return storageos
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1StorageOSPersistentVolumeSource getStorageos() {
     return storageos;
   }
-
 
   public void setStorageos(V1StorageOSPersistentVolumeSource storageos) {
     this.storageos = storageos;
   }
 
 
-  public V1PersistentVolumeSpec volumeMode(String volumeMode) {
+  public V1PersistentVolumeSpec volumeAttributesClassName(String volumeAttributesClassName) {
+    this.volumeAttributesClassName = volumeAttributesClassName;
+    return this;
+  }
 
+   /**
+   * Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).
+   * @return volumeAttributesClassName
+  **/
+  @jakarta.annotation.Nullable
+  @ApiModelProperty(value = "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).")
+  public String getVolumeAttributesClassName() {
+    return volumeAttributesClassName;
+  }
+
+  public void setVolumeAttributesClassName(String volumeAttributesClassName) {
+    this.volumeAttributesClassName = volumeAttributesClassName;
+  }
+
+
+  public V1PersistentVolumeSpec volumeMode(String volumeMode) {
     this.volumeMode = volumeMode;
     return this;
   }
@@ -857,13 +822,11 @@ public class V1PersistentVolumeSpec {
    * volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.
    * @return volumeMode
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.")
-
   public String getVolumeMode() {
     return volumeMode;
   }
-
 
   public void setVolumeMode(String volumeMode) {
     this.volumeMode = volumeMode;
@@ -871,7 +834,6 @@ public class V1PersistentVolumeSpec {
 
 
   public V1PersistentVolumeSpec vsphereVolume(V1VsphereVirtualDiskVolumeSource vsphereVolume) {
-
     this.vsphereVolume = vsphereVolume;
     return this;
   }
@@ -880,21 +842,20 @@ public class V1PersistentVolumeSpec {
    * Get vsphereVolume
    * @return vsphereVolume
   **/
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @ApiModelProperty(value = "")
-
   public V1VsphereVirtualDiskVolumeSource getVsphereVolume() {
     return vsphereVolume;
   }
-
 
   public void setVsphereVolume(V1VsphereVirtualDiskVolumeSource vsphereVolume) {
     this.vsphereVolume = vsphereVolume;
   }
 
 
+
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -930,15 +891,15 @@ public class V1PersistentVolumeSpec {
         Objects.equals(this.scaleIO, v1PersistentVolumeSpec.scaleIO) &&
         Objects.equals(this.storageClassName, v1PersistentVolumeSpec.storageClassName) &&
         Objects.equals(this.storageos, v1PersistentVolumeSpec.storageos) &&
+        Objects.equals(this.volumeAttributesClassName, v1PersistentVolumeSpec.volumeAttributesClassName) &&
         Objects.equals(this.volumeMode, v1PersistentVolumeSpec.volumeMode) &&
         Objects.equals(this.vsphereVolume, v1PersistentVolumeSpec.vsphereVolume);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accessModes, awsElasticBlockStore, azureDisk, azureFile, capacity, cephfs, cinder, claimRef, csi, fc, flexVolume, flocker, gcePersistentDisk, glusterfs, hostPath, iscsi, local, mountOptions, nfs, nodeAffinity, persistentVolumeReclaimPolicy, photonPersistentDisk, portworxVolume, quobyte, rbd, scaleIO, storageClassName, storageos, volumeMode, vsphereVolume);
+    return Objects.hash(accessModes, awsElasticBlockStore, azureDisk, azureFile, capacity, cephfs, cinder, claimRef, csi, fc, flexVolume, flocker, gcePersistentDisk, glusterfs, hostPath, iscsi, local, mountOptions, nfs, nodeAffinity, persistentVolumeReclaimPolicy, photonPersistentDisk, portworxVolume, quobyte, rbd, scaleIO, storageClassName, storageos, volumeAttributesClassName, volumeMode, vsphereVolume);
   }
-
 
   @Override
   public String toString() {
@@ -972,6 +933,7 @@ public class V1PersistentVolumeSpec {
     sb.append("    scaleIO: ").append(toIndentedString(scaleIO)).append("\n");
     sb.append("    storageClassName: ").append(toIndentedString(storageClassName)).append("\n");
     sb.append("    storageos: ").append(toIndentedString(storageos)).append("\n");
+    sb.append("    volumeAttributesClassName: ").append(toIndentedString(volumeAttributesClassName)).append("\n");
     sb.append("    volumeMode: ").append(toIndentedString(volumeMode)).append("\n");
     sb.append("    vsphereVolume: ").append(toIndentedString(vsphereVolume)).append("\n");
     sb.append("}");
@@ -982,11 +944,241 @@ public class V1PersistentVolumeSpec {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("accessModes");
+    openapiFields.add("awsElasticBlockStore");
+    openapiFields.add("azureDisk");
+    openapiFields.add("azureFile");
+    openapiFields.add("capacity");
+    openapiFields.add("cephfs");
+    openapiFields.add("cinder");
+    openapiFields.add("claimRef");
+    openapiFields.add("csi");
+    openapiFields.add("fc");
+    openapiFields.add("flexVolume");
+    openapiFields.add("flocker");
+    openapiFields.add("gcePersistentDisk");
+    openapiFields.add("glusterfs");
+    openapiFields.add("hostPath");
+    openapiFields.add("iscsi");
+    openapiFields.add("local");
+    openapiFields.add("mountOptions");
+    openapiFields.add("nfs");
+    openapiFields.add("nodeAffinity");
+    openapiFields.add("persistentVolumeReclaimPolicy");
+    openapiFields.add("photonPersistentDisk");
+    openapiFields.add("portworxVolume");
+    openapiFields.add("quobyte");
+    openapiFields.add("rbd");
+    openapiFields.add("scaleIO");
+    openapiFields.add("storageClassName");
+    openapiFields.add("storageos");
+    openapiFields.add("volumeAttributesClassName");
+    openapiFields.add("volumeMode");
+    openapiFields.add("vsphereVolume");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to V1PersistentVolumeSpec
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!V1PersistentVolumeSpec.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in V1PersistentVolumeSpec is not found in the empty JSON string", V1PersistentVolumeSpec.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!V1PersistentVolumeSpec.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `V1PersistentVolumeSpec` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("accessModes") != null && !jsonObj.get("accessModes").isJsonNull() && !jsonObj.get("accessModes").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accessModes` to be an array in the JSON string but got `%s`", jsonObj.get("accessModes").toString()));
+      }
+      // validate the optional field `awsElasticBlockStore`
+      if (jsonObj.get("awsElasticBlockStore") != null && !jsonObj.get("awsElasticBlockStore").isJsonNull()) {
+        V1AWSElasticBlockStoreVolumeSource.validateJsonElement(jsonObj.get("awsElasticBlockStore"));
+      }
+      // validate the optional field `azureDisk`
+      if (jsonObj.get("azureDisk") != null && !jsonObj.get("azureDisk").isJsonNull()) {
+        V1AzureDiskVolumeSource.validateJsonElement(jsonObj.get("azureDisk"));
+      }
+      // validate the optional field `azureFile`
+      if (jsonObj.get("azureFile") != null && !jsonObj.get("azureFile").isJsonNull()) {
+        V1AzureFilePersistentVolumeSource.validateJsonElement(jsonObj.get("azureFile"));
+      }
+      // validate the optional field `cephfs`
+      if (jsonObj.get("cephfs") != null && !jsonObj.get("cephfs").isJsonNull()) {
+        V1CephFSPersistentVolumeSource.validateJsonElement(jsonObj.get("cephfs"));
+      }
+      // validate the optional field `cinder`
+      if (jsonObj.get("cinder") != null && !jsonObj.get("cinder").isJsonNull()) {
+        V1CinderPersistentVolumeSource.validateJsonElement(jsonObj.get("cinder"));
+      }
+      // validate the optional field `claimRef`
+      if (jsonObj.get("claimRef") != null && !jsonObj.get("claimRef").isJsonNull()) {
+        V1ObjectReference.validateJsonElement(jsonObj.get("claimRef"));
+      }
+      // validate the optional field `csi`
+      if (jsonObj.get("csi") != null && !jsonObj.get("csi").isJsonNull()) {
+        V1CSIPersistentVolumeSource.validateJsonElement(jsonObj.get("csi"));
+      }
+      // validate the optional field `fc`
+      if (jsonObj.get("fc") != null && !jsonObj.get("fc").isJsonNull()) {
+        V1FCVolumeSource.validateJsonElement(jsonObj.get("fc"));
+      }
+      // validate the optional field `flexVolume`
+      if (jsonObj.get("flexVolume") != null && !jsonObj.get("flexVolume").isJsonNull()) {
+        V1FlexPersistentVolumeSource.validateJsonElement(jsonObj.get("flexVolume"));
+      }
+      // validate the optional field `flocker`
+      if (jsonObj.get("flocker") != null && !jsonObj.get("flocker").isJsonNull()) {
+        V1FlockerVolumeSource.validateJsonElement(jsonObj.get("flocker"));
+      }
+      // validate the optional field `gcePersistentDisk`
+      if (jsonObj.get("gcePersistentDisk") != null && !jsonObj.get("gcePersistentDisk").isJsonNull()) {
+        V1GCEPersistentDiskVolumeSource.validateJsonElement(jsonObj.get("gcePersistentDisk"));
+      }
+      // validate the optional field `glusterfs`
+      if (jsonObj.get("glusterfs") != null && !jsonObj.get("glusterfs").isJsonNull()) {
+        V1GlusterfsPersistentVolumeSource.validateJsonElement(jsonObj.get("glusterfs"));
+      }
+      // validate the optional field `hostPath`
+      if (jsonObj.get("hostPath") != null && !jsonObj.get("hostPath").isJsonNull()) {
+        V1HostPathVolumeSource.validateJsonElement(jsonObj.get("hostPath"));
+      }
+      // validate the optional field `iscsi`
+      if (jsonObj.get("iscsi") != null && !jsonObj.get("iscsi").isJsonNull()) {
+        V1ISCSIPersistentVolumeSource.validateJsonElement(jsonObj.get("iscsi"));
+      }
+      // validate the optional field `local`
+      if (jsonObj.get("local") != null && !jsonObj.get("local").isJsonNull()) {
+        V1LocalVolumeSource.validateJsonElement(jsonObj.get("local"));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("mountOptions") != null && !jsonObj.get("mountOptions").isJsonNull() && !jsonObj.get("mountOptions").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `mountOptions` to be an array in the JSON string but got `%s`", jsonObj.get("mountOptions").toString()));
+      }
+      // validate the optional field `nfs`
+      if (jsonObj.get("nfs") != null && !jsonObj.get("nfs").isJsonNull()) {
+        V1NFSVolumeSource.validateJsonElement(jsonObj.get("nfs"));
+      }
+      // validate the optional field `nodeAffinity`
+      if (jsonObj.get("nodeAffinity") != null && !jsonObj.get("nodeAffinity").isJsonNull()) {
+        V1VolumeNodeAffinity.validateJsonElement(jsonObj.get("nodeAffinity"));
+      }
+      if ((jsonObj.get("persistentVolumeReclaimPolicy") != null && !jsonObj.get("persistentVolumeReclaimPolicy").isJsonNull()) && !jsonObj.get("persistentVolumeReclaimPolicy").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `persistentVolumeReclaimPolicy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("persistentVolumeReclaimPolicy").toString()));
+      }
+      // validate the optional field `photonPersistentDisk`
+      if (jsonObj.get("photonPersistentDisk") != null && !jsonObj.get("photonPersistentDisk").isJsonNull()) {
+        V1PhotonPersistentDiskVolumeSource.validateJsonElement(jsonObj.get("photonPersistentDisk"));
+      }
+      // validate the optional field `portworxVolume`
+      if (jsonObj.get("portworxVolume") != null && !jsonObj.get("portworxVolume").isJsonNull()) {
+        V1PortworxVolumeSource.validateJsonElement(jsonObj.get("portworxVolume"));
+      }
+      // validate the optional field `quobyte`
+      if (jsonObj.get("quobyte") != null && !jsonObj.get("quobyte").isJsonNull()) {
+        V1QuobyteVolumeSource.validateJsonElement(jsonObj.get("quobyte"));
+      }
+      // validate the optional field `rbd`
+      if (jsonObj.get("rbd") != null && !jsonObj.get("rbd").isJsonNull()) {
+        V1RBDPersistentVolumeSource.validateJsonElement(jsonObj.get("rbd"));
+      }
+      // validate the optional field `scaleIO`
+      if (jsonObj.get("scaleIO") != null && !jsonObj.get("scaleIO").isJsonNull()) {
+        V1ScaleIOPersistentVolumeSource.validateJsonElement(jsonObj.get("scaleIO"));
+      }
+      if ((jsonObj.get("storageClassName") != null && !jsonObj.get("storageClassName").isJsonNull()) && !jsonObj.get("storageClassName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `storageClassName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("storageClassName").toString()));
+      }
+      // validate the optional field `storageos`
+      if (jsonObj.get("storageos") != null && !jsonObj.get("storageos").isJsonNull()) {
+        V1StorageOSPersistentVolumeSource.validateJsonElement(jsonObj.get("storageos"));
+      }
+      if ((jsonObj.get("volumeAttributesClassName") != null && !jsonObj.get("volumeAttributesClassName").isJsonNull()) && !jsonObj.get("volumeAttributesClassName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `volumeAttributesClassName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("volumeAttributesClassName").toString()));
+      }
+      if ((jsonObj.get("volumeMode") != null && !jsonObj.get("volumeMode").isJsonNull()) && !jsonObj.get("volumeMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `volumeMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("volumeMode").toString()));
+      }
+      // validate the optional field `vsphereVolume`
+      if (jsonObj.get("vsphereVolume") != null && !jsonObj.get("vsphereVolume").isJsonNull()) {
+        V1VsphereVirtualDiskVolumeSource.validateJsonElement(jsonObj.get("vsphereVolume"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!V1PersistentVolumeSpec.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'V1PersistentVolumeSpec' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<V1PersistentVolumeSpec> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(V1PersistentVolumeSpec.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<V1PersistentVolumeSpec>() {
+           @Override
+           public void write(JsonWriter out, V1PersistentVolumeSpec value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public V1PersistentVolumeSpec read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of V1PersistentVolumeSpec given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of V1PersistentVolumeSpec
+  * @throws IOException if the JSON string is invalid with respect to V1PersistentVolumeSpec
+  */
+  public static V1PersistentVolumeSpec fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, V1PersistentVolumeSpec.class);
+  }
+
+ /**
+  * Convert an instance of V1PersistentVolumeSpec to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
